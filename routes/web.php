@@ -73,3 +73,5 @@ Route::post('/reset-password', function (Request $request) {
 })->middleware('guest')->name('password.update');
 // end bagian lupa pass
 
+// Route untuk menampilkan halaman pendaftaran pengguna baru
+Route::get('/daftar', [AuthController::class, 'index']);

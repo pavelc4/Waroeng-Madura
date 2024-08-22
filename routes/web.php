@@ -85,3 +85,9 @@ Route::post('/postlogin', [AuthController::class, 'postlogin']);
 
 // Route untuk menangani proses logout
 Route::get('/logout', [AuthController::class, 'logout']);
+
+
+// Route untuk menampilkan halaman login jika pengguna belum login
+Route::get('/login', function () {
+    return Auth::check() ? redirect('/dashboard') : view('auth.login');
+})->middleware('guest')->name('login');

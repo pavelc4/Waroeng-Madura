@@ -79,3 +79,6 @@ Route::get('/daftar', [AuthController::class, 'index']);
 
 // Route untuk menyimpan data pengguna baru
 Route::post('/user/daftar', [AuthController::class, 'store'])->name('store');
+
+// Route untuk menangani proses login
+Route::post('/postlogin', [AuthController::class, 'postlogin']);

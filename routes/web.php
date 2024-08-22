@@ -72,3 +72,4 @@ Route::post('/reset-password', function (Request $request) {
                 : back()->withErrors(['email' => [($status)]]);
 })->middleware('guest')->name('password.update');
 // end bagian lupa pass
+

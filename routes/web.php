@@ -91,3 +91,57 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/login', function () {
     return Auth::check() ? redirect('/dashboard') : view('auth.login');
 })->middleware('guest')->name('login');
+
+// Route untuk menampilkan halaman lupa password khusus
+Route::get('/forgot/password', [AuthController::class, 'forgotPw']);
+
+
+
+// Group route dengan middleware 'auth' dan 'ceklevel:admin'
+Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
+
+    // Route untuk menampilkan halaman dashboard admin
+    Route::get('/admin/dashboard', [DashboardController::class, 'index']);
+
+    // Route untuk menampilkan, menyimpan, mengedit, dan menghapus kategori
+    Route::get('/admin/kategori', [KategoriController::class, 'index']);
+    Route::post('/admin/kategori/store', [KategoriController::class, 'store']);
+    Route::get('/admin/kategori/{id}/edit', [KategoriController::class, 'edit']);
+    Route::put('/admin/kategori/{id}', [KategoriController::class, 'update']);
+    Route::get('/admin/kategori/{id}', [KategoriController::class, 'destroy']);
+
+    // Route untuk menampilkan, menyimpan, mengedit, dan menghapus satuan
+    Route::get('/admin/satuan', [SatuanController::class, 'index']);
+    Route::post('/admin/satuan/store', [SatuanController::class, 'store']);
+    Route::get('/admin/satuan/{id}/edit', [SatuanController::class, 'edit']);
+    Route::put('/admin/satuan/{id}', [SatuanController::class, 'update']);
+    Route::get('/admin/satuan/{id}', [SatuanController::class, 'destroy']);
+
+    // Route untuk menampilkan, menyimpan, mengedit, dan menghapus barang
+    Route::get('/admin/barang', [BarangController::class, 'index']);
+    Route::post('/admin/barang/store', [BarangController::class, 'store']);
+    Route::get('/admin/barang/{id}/edit', [BarangController::class, 'edit']);
+    Route::get('/admin/barang/{id}/show', [BarangController::class, 'show']);
+    Route::put('/admin/barang/{id}', [BarangController::class, 'update']);
+    Route::get('/admin/barang/{id}', [BarangController::class, 'destroy']);
+
+    // Route untuk menampilkan laporan, mencari laporan, dan mencetak laporan transaksi
+    Route::get('/admin/laporan', [TransaksiController::class, 'index']);
+    Route::get('/admin/laporan/cari', [TransaksiController::class, 'cari']);
+    Route::get('/admin/laporan/{dari}/{sampai}/print', [TransaksiController::class, 'printTanggal']);
+    Route::get('/admin/laporan/{kodeTransaksi}/print', [TransaksiController::class, 'print']);
+    Route::get('/admin/laporan/{kodeTransaksi}', [TransaksiController::class, 'show']);
+
+    // Route untuk menampilkan, menyimpan, mengedit, dan menghapus pengguna
+    Route::get('/admin/user', [UserController::class, 'index']);
+    Route::post('/admin/user/store', [UserController::class, 'store']);
+    Route::get('/admin/user/{id}/edit', [UserController::class, 'edit']);
+    Route::put('/admin/user/{id}', [UserController::class, 'update']);
+    Route::get('/admin/user/{id}', [UserController::class, 'destroy']);
+
+    // Route untuk menampilkan dan mengedit profil admin
+    Route::get('/admin/profile/{id}', [ProfileController::class, 'edit']);
+    Route::put('/admin/profile/{id}', [ProfileController::class, 'update']);
+});
+
+

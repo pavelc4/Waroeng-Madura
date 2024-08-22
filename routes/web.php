@@ -82,3 +82,6 @@ Route::post('/user/daftar', [AuthController::class, 'store'])->name('store');
 
 // Route untuk menangani proses login
 Route::post('/postlogin', [AuthController::class, 'postlogin']);
+
+// Route untuk menangani proses logout
+Route::get('/logout', [AuthController::class, 'logout']);

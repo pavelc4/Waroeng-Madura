@@ -145,3 +145,27 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
 });
 
 
+// Group route dengan middleware 'auth' dan 'ceklevel:admin,kasir'
+Route::group(['middleware' => ['auth', 'ceklevel:admin,kasir']], function(){
+
+    // Route untuk menampilkan halaman dashboard kasir
+    Route::get('/kasir/dashboard', [DashboardController::class, 'index']);
+
+    // Route untuk menampilkan, menyimpan, dan menghapus transaksi sementara (penjualan)
+    Route::get('/kasir/penjualan', [TransaksiSementaraController::class, 'index']);
+    Route::post('/kasir/penjualan/store', [TransaksiSementaraController::class, 'store']);
+    Route::post('/kasir/penjualan/bayar/{kodeTransaksi}', [TransaksiSementaraController::class, 'bayar']);
+    Route::get('/kasir/penjualan/{id}', [TransaksiSementaraController::class, 'destroy']);
+    Route::get('/kasir/penjualan/hapus/semua', [TransaksiSementaraController::class, 'hapusSemua']);
+
+    // Route untuk mencetak laporan transaksi berdasarkan kode transaksi
+    Route::get('/kasir/laporan/{kodeTransaksi}/print', [TransaksiController::class, 'print']);
+
+    // Route untuk mengedit transaksi sementara berdasarkan ID dan ID barang
+    Route::put('/kasir/transaksi-sementara/{id}/{barang_id}/edit', [TransaksiSementaraController::class, 'update']);
+
+    // Route untuk menampilkan dan mengedit profil kasir
+    Route::get('/kasir/profile/{id}', [ProfileController::class, 'edit']);
+    Route::put('/kasir/profile/{id}', [ProfileController::class, 'update']);
+
+});

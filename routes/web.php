@@ -1,6 +1,21 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\SatuanController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\TransaksiSementaraController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Auth;
 
 
 // default page

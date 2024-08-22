@@ -75,3 +75,7 @@ Route::post('/reset-password', function (Request $request) {
 
 // Route untuk menampilkan halaman pendaftaran pengguna baru
 Route::get('/daftar', [AuthController::class, 'index']);
+
+
+// Route untuk menyimpan data pengguna baru
+Route::post('/user/daftar', [AuthController::class, 'store'])->name('store');

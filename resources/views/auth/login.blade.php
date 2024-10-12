@@ -63,12 +63,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <div class="form-group">
+                                     <div class="form-group">
                                         <span>Belum punya akun? </span>
                                         <a href="/daftar" class="text-info">
                                             Daftar
                                         </a>
-                                    </div> --}}
+                                    </div> 
 
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-info btn-lg btn-block" tabindex="4">
